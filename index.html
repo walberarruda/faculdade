@@ -5,6 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Login e Registro com HTML5 e CSS3</title>
     <link rel="stylesheet" type="text/css" href="estilo.css">
+
+
+    <script language="javascript" type="text/javascript">
+        function validarCadastro() {
+            var nome_cadastro = formCadastro.nome_cad.value;
+            var email_cadastro = formCadastro.email_cad.value;
+            var senha_cadastro = formCadastro.senha_cad.value;
+
+
+            if (nome_cadastro == "") {
+                alert('Preencha o campo com seu nome');
+                formCadastro.nome_cad.focus();
+            return false;
+            }
+            else if (email_cadastro == "") {
+                alert('Preencha o compo com seu e-mail');
+                formCadastro.email_cad.focus();
+            return false;
+            }
+            else if (senha_cadastro == "" || senha_cadastro.length <6) {
+                alert('Preencha o compo com sua senha de acesso! (mínimo de 6 e máximo de 8 caracteres)');
+                formCadastro.senha_cad.focus();
+            return false;
+            }
+            else {
+                alert('Usuário cadastrado com sucesso!\n O e-mail do cadastro' + email_cadastro + 'terá que ser validado!\n Favor confirmar o cadastro no seu email');
+            }
+        }
+
+        function validarLogin() {
+            var email_log = formLogin.email_login.value;
+            var senha_log = formLogin.senha_login.value;
+
+            if (email_log == "") {
+                alert('Preencha o campo com seu e-mail para logar!');
+                formLogin.email_login.focus();
+            return false;
+            }
+            else if (senha_log == "" || senha_log.length <6) {
+                alert('Preencha o compo com sua senha de acesso! (mínimo de 6 e máximo de 8 caracteres)');
+                formLogin.senha_login.focus();
+            return false;
+            }
+
+            else {
+                alert('Bem vindo ao Sistema ' + email_log);
+            }
+
+        }
+
+
+    </script>
+
 </head>
 
 <body>
@@ -16,16 +69,16 @@
     <div class="content">
         <!--FORMULÁRIO DE LOGIN-->
         <div id="login">
-            <form method="post" action="">
+            <form name="formLogin" method="post" action="">
                 <h1>Login</h1>
                 <p>
-                    <label for="name_login">Seu e-mail</label>
-                    <input id="nome_login" name="nome_login" required="required" type="text" placeholder="ex. contato@projecaotaguatinga.com"/>
+                    <label for="email_login">Seu nome</label>
+                    <input id="email_login" name="email_login" required="required" type="text" placeholder="ex. contato@projecaotaguatinga.com"/>
                 </p>
 
                 <p>
-                    <label for="email_login">Sua senha</label>
-                    <input id="email_login" name="email_login" required="required" type="password" placeholder="ex. senha"/>
+                    <label for="senha_login">Sua senha</label>
+                    <input id="senha_login" name="senha_login" required="required" type="password" placeholder="ex. senha"/>
                 </p>
 
                 <p>
@@ -34,7 +87,7 @@
                 </p>
                 
                 <p>
-                    <input type="submit" value="logar"/>
+                    <input type="submit" value="Logar" onclick="return validarLogin()" />
                 </p>
 
                 <p class="link">
@@ -46,7 +99,7 @@
 
         <!--Formulário de Cadastro-->
         <div id="cadastro">
-            <form method="post" action="">
+            <form name="formCadastro" method="post" action="">
                 <h1>Cadastro</h1>
 
                 <p>
@@ -61,11 +114,11 @@
 
                 <p>
                     <label for="senha_cad">Sua senha</label>
-                    <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="ex. 1234"/>
+                    <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="ex. 1234" maxlength="8"/>
                 </p>
 
                 <p>
-                    <input type="submit" value="cadastrar"/>
+                    <input type="submit" value="Cadastrar" onclick="return validarCadastro() "/>
                 </p>
 
                 <p class="link">
